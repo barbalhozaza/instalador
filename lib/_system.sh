@@ -32,10 +32,10 @@ system_git_clone() {
   printf "${WHITE} 💻 Fazendo download do código whaticket...${GRAY_LIGHT}"
   printf "\n\n"
 
-
   sleep 2
 
   sudo su - deploy <<EOF
+  mkdir -p /home/deploy/${instancia_add}/
   git clone ${link_git} /home/deploy/${instancia_add}/
 EOF
 
