@@ -35,8 +35,9 @@ system_git_clone() {
   sleep 2
 
   sudo su - deploy <<EOF
-  mkdir -p /home/deploy/${instancia_add}/
-  sudo chmod -r 777 git clone ${link_git} /home/deploy/${instancia_add}/
+  mkdir -p /home/deploy/${instancia_add}/ || { echo "Falha ao criar o diretório /home/deploy/${instancia_add}/"; exit 1; }
+  chmod 777 /home/deploy/${instancia_add}/ || { echo "Falha ao definir as permissões do diretório /home/deploy/${instancia_add}/"; exit 1; }
+  git clone ${link_git} /home/deploy/${instancia_add}/ || { echo "Falha ao clonar o repositório git"; exit 1; }
 EOF
 
   sleep 2
