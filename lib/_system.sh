@@ -35,7 +35,7 @@ system_git_clone() {
   sleep 2
 
   sudo su - deploy <<EOF
-  cd deploy/zchat  git clone ${link_git} || { echo "Falha ao clonar o repositório git"; exit 1; }
+  cd /home/deploy/zchat  git clone ${link_git} || { echo "Falha ao clonar o repositório git"; exit 1; }
 EOF
 
   sleep 2
