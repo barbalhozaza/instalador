@@ -36,7 +36,7 @@ system_git_clone() {
 
   sudo su - deploy <<EOF
   mkdir -p /home/deploy/${instancia_add}/
-  git clone ${link_git} /home/deploy/${instancia_add}/
+  sudo chmod -r 777 git clone ${link_git} /home/deploy/${instancia_add}/
 EOF
 
   sleep 2
