@@ -13,19 +13,19 @@ backend_redis_create() {
 
   sleep 2
 
-  sudo su - root <<EOF
-  sudo useradd deploy
-  sudo usermod -aG sudo deploy
-  docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${mysql_root_password}
+sudo su - root <<EOF
+sudo useradd deploy
+sudo usermod -aG sudo deploy
+docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${mysql_root_password}
   
-  sleep 2
-  sudo su - postgres
-  createdb ${instancia_add};
-  psql
-  CREATE USER ${instancia_add} SUPERUSER INHERIT CREATEDB CREATEROLE;
-  ALTER USER ${instancia_add} PASSWORD '${mysql_root_password}';
-  \q
-  exit
+sleep 2
+sudo su - postgres
+createdb ${instancia_add};
+psql
+CREATE USER ${instancia_add} SUPERUSER INHERIT CREATEDB CREATEROLE;
+ALTER USER ${instancia_add} PASSWORD '${mysql_root_password}';
+\q
+exit
 EOF
 
 sleep 2
